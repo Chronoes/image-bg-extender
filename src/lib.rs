@@ -57,9 +57,12 @@ fn normalise_image(
     (width_overflow, height_overflow): (u32, u32),
 ) -> DynamicImage {
     let (width, height) = img.dimensions();
-    let w_cutoff = width_overflow / 2;
-    let h_cutoff = height_overflow / 2;
-    img.crop_imm(w_cutoff, h_cutoff, width - w_cutoff, height - h_cutoff)
+    img.crop_imm(
+        width_overflow / 2,
+        height_overflow / 2,
+        width - width_overflow,
+        height - height_overflow,
+    )
 }
 
 fn calculate_canvas_dimensions(
